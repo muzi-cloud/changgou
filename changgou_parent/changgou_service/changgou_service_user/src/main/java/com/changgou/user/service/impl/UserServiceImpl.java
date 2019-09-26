@@ -215,4 +215,31 @@ public class UserServiceImpl implements UserService {
     public int addUserPoints(String username, Integer pint) {
         return userMapper.addUserPoints(username, pint);
     }
+    /**
+     * 未登录更新密码
+     */
+    @Override
+    public void updatePassword(String pwd, String phone) {
+        Example example=new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("phone",phone);
+        User user=new User();
+        user.setPassword(pwd);
+        userMapper.updateByExampleSelective(user, example);
+    }
+
+    /**
+     * 已登录更新密码
+     * @param
+     * @param
+     */
+    @Override
+    public void changePassword(String username, String pwd) {
+        Example example=new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username",username);
+        User user=new User();
+        user.setPassword(pwd);
+        userMapper.updateByExampleSelective(user, example);
+    }
 }

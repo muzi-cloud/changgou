@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+</head>
+<body>
+<div class="app" id="app">
+    <form>
+        <input v-model="user.phone" type="text" class="input-clear" placeholder="请输入手机号">
+        <input style="font-size: x-small;" id="validateCodeButton" @click="sendValidateCode()" type="button"
+               value="发送验证码"></br>
+        <input v-model="user.validateCode" type="text" class="input-clear" placeholder="请输入验证码"></br>
+        <button @click="submit()" type="button" class="btn order-btn">提交</button>
+        <div style="text-align: center;color: red;">{{message}}</div>
+    </form>
+</div>
+
+<script src="/js/axios.js"></script>
+<script src="/js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: "",
+            user: {
+                phone: "", // 套餐id
+                validateCode: "" // 性别
+            }//预约信息
+        },
+        methods: {
+            sendValidateCode: function () {
+                //获取用户输入的手机号
+                var phone = this.user.phone;
+
+                axios.post("/api/security/phone?phone=" + phone).then(function (response) {
+
+                        app.message=response.data.message;
+
+
+                });
+            },
+            //提交预约
+            submit: function () {
+                axios.post("/api/security/check", this.user).then(function (response) {
+                    if (response.data.flag) {
+                        /* this.$message({
+                             type:"success",
+                             message:response.data.message
+                         })*/
+                        axios.get("/api/userweb/change")
+                        window.location.href = "/api/userweb/change"; // 传递订单id
+                    } else {
+                        this.$message.error(response.data.message);
+                    }
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

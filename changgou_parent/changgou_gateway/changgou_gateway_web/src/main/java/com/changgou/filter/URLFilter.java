@@ -11,7 +11,14 @@ public class URLFilter {
             "/api/user/login",
             "/api/user/add",
             "/api/productComment/search/**",
-            "/api/productComment/findBySkuId"
+            "/api/productComment/findBySkuId",
+            "/api/userweb/forget",
+            "/api/userweb/change",
+            "/api/userweb/success",
+            "/api/security/phone",
+            "/api/security/check",
+            "/api/security/resetPassword"
+
 
     };
 
