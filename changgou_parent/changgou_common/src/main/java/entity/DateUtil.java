@@ -137,5 +137,15 @@ public class DateUtil {
             System.out.println(data2str(date, "HH:mm"));
         }
     }
+    /***
+     * 按照指定格式将字符串转时间
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static Date str2Date(String date, String pattern) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.parse(date);
+    }
 
 }

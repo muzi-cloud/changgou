@@ -167,4 +167,16 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> findAll() {
         return addressMapper.selectAll();
     }
+    /**
+     * 通过用户名修改地址值
+     * @param address
+     * @param username
+     */
+    @Override
+    public void updateByUsername(Address address, String username) {
+        Example example=new Example(Address.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username",username);
+        addressMapper.updateByExampleSelective(address,example);
+    }
 }

@@ -5,10 +5,7 @@ import com.changgou.user.pojo.User;
 import entity.Result;
 import feign.Param;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +27,20 @@ public interface UserFeign {
 
     @GetMapping("myCollect")
     public List<Collection> myCollect(String username);
+    /***
+     * 多条件搜索品牌数据
+     * @param user
+     * @return
+     */
+    @PostMapping(value = "/search" )
+    public Result<List<User>> findList(@RequestBody(required = false)  User user);
+    /***
+     * 修改User数据
+     * @param user
+     * @param id
+     * @return
+     */
+    @PutMapping(value="/{id}")
+    public Result update(@RequestBody  User user,@PathVariable("id") String id);
+
 }

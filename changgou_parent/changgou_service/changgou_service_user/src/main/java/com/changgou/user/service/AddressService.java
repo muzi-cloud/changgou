@@ -66,4 +66,11 @@ public interface AddressService {
      * @return
      */
     List<Address> findAll();
+
+    /**
+     * 通过用户名修改Address
+     * @param address
+     * @param username
+     */
+    void updateByUsername(Address address, String username);
 }

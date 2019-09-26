@@ -7,6 +7,7 @@ import entity.StatusCode;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +24,7 @@ import java.io.IOException;
 public class FileController {
 
     @RequestMapping("upload")
-    public Result upload(MultipartFile file) throws IOException {
+    public Result upload(@RequestPart("file")MultipartFile file) throws IOException {
         //1、包装FastDFS上传文件对象
         FastDFSFile dfsFile = new FastDFSFile(
                 file.getOriginalFilename(),  //原来文件名

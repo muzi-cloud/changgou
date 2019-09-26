@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(basePackages = {"com.changgou.user.feign","com.changgou.goods.feign"})
+@EnableFeignClients(basePackages = {"com.changgou.user.feign","com.changgou.goods.feign","com.changgou.file.feign"})
 public class UserWebApplication {
     public static void main(String[] args) {
 

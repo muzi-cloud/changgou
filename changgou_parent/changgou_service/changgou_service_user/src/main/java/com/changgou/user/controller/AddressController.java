@@ -138,4 +138,15 @@ public class AddressController {
         List<Address> addresses = addressService.findList(where);
         return new Result<List<Address>>(true, StatusCode.OK, "查询收件人列表成功", addresses);
     }
+    /***
+     * 通过用户名修改地址数据
+     * @param address
+     * @return
+     */
+    @PutMapping
+    public Result updateByUsername(@RequestBody  Address address){
+        String username = TokenDecode.getUserInfo().get("username");
+        addressService.updateByUsername(address,username);
+        return new Result(true,StatusCode.OK,"修改省市区地址成功");
+    }
 }

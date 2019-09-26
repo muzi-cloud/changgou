@@ -18,6 +18,7 @@
         <module>changgou_service_order_api</module>
         <module>changgou_service_seckill_api</module>
         <module>changgou_service_comment_api</module>
+        <module>com_changgou_file_api</module>
     </modules>
 
 
