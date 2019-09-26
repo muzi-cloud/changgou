@@ -14,6 +14,7 @@
     <modules>
         <module>changgou_web_search</module>
         <module>changgou_web_user</module>
+        <module>changgou_web_item</module>
     </modules>
 
     <dependencies>

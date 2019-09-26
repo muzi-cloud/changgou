@@ -1,5 +1,6 @@
 package com.changgou.goods.feign;
 
+import com.changgou.goods.pojo.Goods;
 import com.changgou.goods.pojo.Spu;
 import entity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,4 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface SpuFeign {
     @GetMapping("/{id}")
     public Result<Spu> findById(@PathVariable("id") Long id);
+    /***
+     * 查询商品
+     * @return
+     */
+    @GetMapping("/goods/{spuId}")
+    Result<Goods> searchBySpuId(@PathVariable("spuId") Long spuId);
 }

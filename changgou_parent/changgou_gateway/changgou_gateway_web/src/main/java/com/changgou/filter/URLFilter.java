@@ -9,7 +9,10 @@ public class URLFilter {
     //不需要登录的url
     private static final String[] ignore = {
             "/api/user/login",
-            "/api/user/add"
+            "/api/user/add",
+            "/api/productComment/search/**",
+            "/api/productComment/findBySkuId"
+
     };
 
     /**
