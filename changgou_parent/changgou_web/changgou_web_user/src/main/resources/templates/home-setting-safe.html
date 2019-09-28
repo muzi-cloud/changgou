@@ -567,7 +567,7 @@ $(function(){
                 axios.post("/api/security/changePassword?oldpwd="+oldpwd+"&newpwd="+newpwd).then(function (response){
                     if(response.data.flag){
                         app.message=response.data.message
-                        window.location.href="/api/userweb/success";
+                        window.location.href="/api/userweb1/success";
                     }else{
                         app.message=response.data.message;
                     }

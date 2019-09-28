@@ -33,6 +33,12 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/js/**",
                 "/login.html",
                 "/oauth/login",
+                "/userweb1/forget",
+                "/userweb1/change",
+                "/userweb1/success",
+                "/security/phone",
+                "/security/resetPassword",
+                "/security/check",
                 "/user/logout",
                 "/user/myCollect");
     }

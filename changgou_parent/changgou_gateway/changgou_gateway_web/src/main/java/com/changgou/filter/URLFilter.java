@@ -12,9 +12,9 @@ public class URLFilter {
             "/api/user/add",
             "/api/productComment/search/**",
             "/api/productComment/findBySkuId",
-            "/api/userweb/forget",
-            "/api/userweb/change",
-            "/api/userweb/success",
+            "/api/userweb1/forget",
+            "/api/userweb1/change",
+            "/api/userweb1/success",
             "/api/security/phone",
             "/api/security/check",
             "/api/security/resetPassword"

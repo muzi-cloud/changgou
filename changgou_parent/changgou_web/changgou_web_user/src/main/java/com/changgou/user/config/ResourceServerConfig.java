@@ -78,10 +78,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 //下边的路径放行
                 .antMatchers(
                         "/user/add",
-                        "/userweb/forget",
-                        "/userweb/change",
-                        "/userweb/reset",
-                        "/userweb/success"
+                        "/userweb1/forget",
+                        "/userweb1/change",
+                        "/userweb1/reset",
+                        "/userweb1/success"
                 ). //配置地址放行
                 permitAll()
                 .anyRequest().
