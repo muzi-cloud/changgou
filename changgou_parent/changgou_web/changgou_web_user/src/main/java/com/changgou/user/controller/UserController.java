@@ -136,7 +136,6 @@ public class UserController extends HttpServlet {
     }
     /**
      * 校验昵称
-     *
      * @return
      */
     @RequestMapping("nickName")

@@ -5,6 +5,7 @@ import com.changgou.user.service.UserService;
 import entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpCookie;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +28,6 @@ public class SecurityController {
     private RedisTemplate redisTemplate;
     @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
-
-
 
 
     @RequestMapping("/phone")
@@ -96,13 +95,18 @@ public class SecurityController {
      * @return
      */
     @RequestMapping("/changePassword")
-    public Result changePassword(@RequestParam("oldpwd")String oldpassword, @RequestParam("newpwd") String newpassword ){
+    public Result changePassword(@RequestParam("oldpwd")String oldpassword, @RequestParam("newpwd") String newpassword ,HttpServletRequest request,HttpServletResponse response){
         String username = TokenDecode.getUserInfo().get("username");
         User user = userService.findById(username);
 
             if (BCrypt.checkpw(oldpassword,user.getPassword())){
                 String newpwd= bCryptPasswordEncoder.encode(newpassword);
                 userService.changePassword(username,newpwd);
+                //清除cookie
+                 Cookie cookie1 = new Cookie("Authorization","");
+                 cookie1.setMaxAge(0);
+                 cookie1.setPath("/");
+                 response.addCookie(cookie1);//返还cookie
                 return new Result(true, StatusCode.OK, "修改成功,请重新登录");
             }else {
                 return new Result(false, StatusCode.OK, "当前密码输入错误");

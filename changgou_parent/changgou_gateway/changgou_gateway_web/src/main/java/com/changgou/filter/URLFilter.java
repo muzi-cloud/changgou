@@ -17,7 +17,9 @@ public class URLFilter {
             "/api/userweb1/success",
             "/api/security/phone",
             "/api/security/check",
-            "/api/security/resetPassword"
+            "/api/security/resetPassword",
+            "/js/vue.js",
+            "/js/axios.js"
 
 
     };

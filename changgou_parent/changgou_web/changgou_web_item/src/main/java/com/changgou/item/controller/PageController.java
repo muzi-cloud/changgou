@@ -80,7 +80,10 @@ public class PageController {
      */
     @RequestMapping("/searchPage/{skuId}/{page}/{size}")
     @ResponseBody
-    public Result searchPage(@PathVariable Long skuId,@PathVariable  int page, @PathVariable  int size){
+    public Result searchPage(@PathVariable Long skuId,@PathVariable  Integer page, @PathVariable  Integer size){
+        if(page==null|| page<=0){
+            page=1;
+        }
         ProductComment productComment1=new ProductComment();
         productComment1.setSkuId(skuId);
         Result<PageInfo<ProductComment>> pageInfoResult = productCommentFeign.findPage(productComment1,page, size);

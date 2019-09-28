@@ -81,7 +81,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/userweb1/forget",
                         "/userweb1/change",
                         "/userweb1/reset",
-                        "/userweb1/success"
+                        "/userweb1/success",
+                        "/js/vue.js",
+                        "/js/axios.js"
                 ). //配置地址放行
                 permitAll()
                 .anyRequest().

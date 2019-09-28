@@ -5,11 +5,13 @@ import com.changgou.comment.pojo.ProductComment;
 import com.changgou.comment.service.ProductCommentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import entity.TokenDecode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 /****
@@ -20,6 +22,7 @@ import java.util.List;
 @Service
 public class ProductCommentServiceImpl implements ProductCommentService {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private ProductCommentMapper productCommentMapper;
 
@@ -130,7 +133,10 @@ public class ProductCommentServiceImpl implements ProductCommentService {
      */
     @Override
     public void add(ProductComment productComment){
-        productCommentMapper.insert(productComment);
+        String username = TokenDecode.getUserInfo().get("username");
+        productComment.setUsername(username);
+        productComment.setAuditTime(new Date());
+        productCommentMapper.insertSelective(productComment);
     }
 
     /**
