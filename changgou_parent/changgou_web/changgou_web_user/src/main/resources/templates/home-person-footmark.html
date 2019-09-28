@@ -169,15 +169,15 @@ $(function(){
 						</dl>
 						<dl>
 							<dt><i>·</i> 我的中心</dt>
-							<dd><a href="home-person-collect.html" >我的收藏</a></dd>
-							<dd><a href="home-person-footmark.html" class="list-active">我的足迹</a></dd>
+							<dd><a href="/api/userweb/myCollect" >我的收藏</a></dd>
+							<dd><a href="/api/userweb/myFoot" class="list-active">我的足迹</a></dd>
 						</dl>
 						<dl>
 							<dt><i>·</i> 物流消息</dt>
 						</dl>
 						<dl>
 							<dt><i>·</i> 设置</dt>
-							<dd><a href="home-setting-info.html">个人信息</a></dd>
+							<dd><a href="/api/userweb/info">个人信息</a></dd>
 							<dd><a href="home-setting-address.html"  >地址管理</a></dd>
 							<dd><a href="home-setting-safe.html" >安全管理</a></dd>
 						</dl>
@@ -205,7 +205,6 @@ $(function(){
                             </ul>
                         </div>
 
-
 						<div class="fr page">
 							<div class="sui-pagination pagination-large">
 								<ul>
@@ -221,13 +220,13 @@ $(function(){
 										<a th:href="@{${url}(pageNum=${page.nextPage})}">下一页»</a>
 									</li>
 								</ul>
-								<div><span>共<span th:text="${page.pages}"></span>页&nbsp;</span><span>
-      到第
-      <input type="text" class="page-num" id="ChoosePageNum">
-      页 <button class="page-confirm" th:onclick="'javascript:choosePage('+${page.pages}+');'">确定</button></span></div>
+								<div>
+									<span>共<span th:text="${page.pages}"></span>页&nbsp;</span><span>
+									到第<input type="text" class="page-num" id="ChoosePageNum">页
+									<button class="page-confirm" th:onclick="'javascript:choosePage('+${page.pages}+');'">确定</button></span>
+								</div>
 							</div>
 						</div>
-
                         <!--猜你喜欢-->
                         <div class="like-title">
                             <div class="mt">

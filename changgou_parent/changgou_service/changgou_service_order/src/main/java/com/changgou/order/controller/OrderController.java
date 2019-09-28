@@ -32,10 +32,13 @@ public class OrderController {
      * @return
      */
     @PostMapping(value = "/search/{page}/{size}" )
-    public Result<PageInfo> findPage(@RequestBody(required = false)  Order order, @PathVariable  int page, @PathVariable  int size){
+    public PageInfo<Order> findPage2(@PathVariable  int page, @PathVariable  int size){
+        String username = TokenDecode.getUserInfo().get("username");
+        Order where=new Order();
+        where.setUsername(username);
         //调用OrderService实现分页条件查询Order
-        PageInfo<Order> pageInfo = orderService.findPage(order, page, size);
-        return new Result(true,StatusCode.OK,"查询成功",pageInfo);
+        PageInfo<Order> pageInfo = orderService.findPage(where, page, size);
+        return pageInfo;
     }
 
     /***
@@ -50,6 +53,7 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.findPage(page, size);
         return new Result<PageInfo>(true,StatusCode.OK,"查询成功",pageInfo);
     }
+
 
     /***
      * 多条件搜索品牌数据

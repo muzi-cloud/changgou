@@ -226,8 +226,8 @@
                                 <div class="control-group">
                                     <label for="inputGender" class="control-label">性别：</label>
                                     <div class="controls">
-                                            <input type="radio"  name="options" value="1" v-model="map.user.sex"><span>男</span>
-                                            <input type="radio"  name="options" value="2" v-model="map.user.sex"><span>女</span>
+                                            <input type="radio" name="sex" value="1" v-model="map.user.sex"><span>男</span>
+                                            <input type="radio" name="sex" value="2" v-model="map.user.sex"><span>女</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -429,7 +429,7 @@
         methods: {
             checkNickName:function () {
                 var nickName=this.map.user.nickName;
-                alert(nickName);
+                // alert(nickName);
                 axios.get("/api/userweb/nickName?nickName="+nickName).then(function (response) {
                     if(!response.data.flag){
                         window.alert(response.data.message);

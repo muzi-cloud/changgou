@@ -83,7 +83,7 @@ public class UserController extends HttpServlet {
            pageNum=1;
        }
         List<Long> skuIds=new ArrayList<>();
-        Result<PageInfo<Collection>> page = collectionFeign.findPage(new Collection(),pageNum, 5);
+        Result<PageInfo<Collection>> page = collectionFeign.findPage(new Collection(),pageNum, 8);
         PageInfo<Collection> data = page.getData();
         List<Collection> list = data.getList();
         for (Collection collection : list) {
@@ -203,7 +203,6 @@ public class UserController extends HttpServlet {
      * 上传图片到festDFS并将路径保存到数据库
      */
     @RequestMapping("upload")
-    @ResponseBody
     public Result upload(@RequestPart(value = "file",required = false) MultipartFile file) {
         try {
             if(file.isEmpty()){
@@ -220,23 +219,5 @@ public class UserController extends HttpServlet {
             return new Result(false, StatusCode.ERROR, "上传图片失败");
         }
     }
-    /**
-     * 把Map转换成/search/list?key=value&key2=value2
-     * @param searchMap
-     * @return
-    private String getUrl(Integer pageNum){
-        String url = "/search/list";
-        if(pageNum != null){
-            url += "?";
-            for (String key : searchMap.keySet()) {
-                ////如果是排序的参数，不拼接到url上，便于下次换种方式排序
-                if(key.indexOf("sort") > -1 || key.equals("pageNum")){
-                    continue;
-                }
-                url += key + "=" + searchMap.get(key) + "&";
-            }
-            url = url.substring(0,url.length() - 1);
-        }
-        return url;
-    }*/
+
 }

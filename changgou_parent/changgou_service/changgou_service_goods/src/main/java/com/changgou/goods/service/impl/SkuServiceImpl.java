@@ -22,6 +22,7 @@ import java.util.List;
 @Service
 public class SkuServiceImpl implements SkuService {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private SkuMapper skuMapper;
 

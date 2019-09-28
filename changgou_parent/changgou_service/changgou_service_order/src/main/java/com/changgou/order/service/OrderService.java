@@ -25,7 +25,6 @@ public interface OrderService {
      * @return
      */
     PageInfo<Order> findPage(int page, int size);
-
     /***
      * Order多条件搜索方法
      * @param order

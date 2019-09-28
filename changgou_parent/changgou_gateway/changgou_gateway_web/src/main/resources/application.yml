@@ -69,7 +69,7 @@ spring:
           # 路由断言：路由拦截规则
           predicates:
             # 拦截所有以/brand开头的请求
-            - Path=/api/userweb/**
+            - Path=/api/userweb/**,/api/orderweb/**
           filters:
             - StripPrefix=1  # 去除路径前缀过滤器，一个"/"识别为一个路径
         - id: changgou_static

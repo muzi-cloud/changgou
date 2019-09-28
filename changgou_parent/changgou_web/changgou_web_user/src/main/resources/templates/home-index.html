@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <title>我的收藏</title>
-     <link rel="icon" href="/assets/img/favicon.ico">
+    <title>我的订单</title>
+     <link rel="icon" href="assets//img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="/css/pages-seckillOrder.css" />
-	<!-- 引入ElementUI样式 -->
-	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<!-- 引入ElementUI组件库 -->
-	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 
 <body>
@@ -69,7 +64,7 @@
 							<form action="" class="sui-form form-inline">
 								<!--searchAutoComplete-->
 								<div class="input-append">
-									<input type="text" id="autocomplete"  class="input-error input-xxlarge" />
+									<input type="text" id="autocomplete" class="input-error input-xxlarge" />
 									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
 								</div>
 							</form>
@@ -142,16 +137,7 @@ $(function(){
 	});
 
 })
-	function choosePage(pages) {
-		  var pageNum= document.getElementById("ChoosePageNum").value;
-		  if(pageNum>pages){
-		      alert("页数不符合");
-		      return;
-		  }
-		  window.location.href="http://localhost:8001/api/userweb/myCollect?pageNum="+pageNum;
-    }
 </script>
-
 <script type="text/javascript" src="/js/plugins/jquery.easing/jquery.easing.min.js"></script>
 <script type="text/javascript" src="/js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="/js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
@@ -160,7 +146,7 @@ $(function(){
     <!--header-->
     <div id="account">
         <div class="py-container">
-            <div class="yui3-g collect">
+            <div class="yui3-g home">
                 <!--左侧列表-->
                 <div class="yui3-u-1-6 list">
 
@@ -175,7 +161,7 @@ $(function(){
                     <div class="list-items">
                         <dl>
 							<dt><i>·</i> 订单中心</dt>
-							<dd ><a href="home-index.html"   >我的订单</a></dd>
+							<dd ><a href="home-index.html"  class="list-active" >我的订单</a></dd>
 							<dd><a href="home-order-pay.html" >待付款</a></dd>
 							<dd><a href="home-order-send.html"  >待发货</a></dd>
 							<dd><a href="home-order-receive.html" >待收货</a></dd>
@@ -183,71 +169,114 @@ $(function(){
 						</dl>
 						<dl>
 							<dt><i>·</i> 我的中心</dt>
-							<dd><a href="/api/userweb/myCollect" class="list-active">我的收藏</a></dd>
-							<dd><a href="/api/userweb/myFoot">我的足迹</a></dd>
+							<dd><a href="home-person-collect.html">我的收藏</a></dd>
+							<dd><a href="home-person-footmark.html">我的足迹</a></dd>
 						</dl>
 						<dl>
 							<dt><i>·</i> 物流消息</dt>
 						</dl>
 						<dl>
 							<dt><i>·</i> 设置</dt>
-							<dd><a href="/api/userweb/info">个人信息</a></dd>
+							<dd><a href="home-setting-info.html">个人信息</a></dd>
 							<dd><a href="home-setting-address.html"  >地址管理</a></dd>
 							<dd><a href="home-setting-safe.html" >安全管理</a></dd>
 						</dl>
                     </div>
                 </div>
                 <!--右侧主内容-->
-                <div class="yui3-u-5-6 goods">
-                    <div class="body">                   
-                            <h4>收藏的商品</h4>
-                            <div class="goods-list">
-                                <ul class="yui3-g"  id="goods-list">
-                                    <li class="yui3-u-1-4" th:each="sku:${result}">
-                                        <div class="list-wrap">
-                                            <div class="p-img"><img th:src="${sku.image}" alt=''></div>
-                                            <div class="price"><strong><em>¥</em> <i th:text="${sku.price}"></i></strong></div>
-                                            <div class="attr"><em th:text="${sku.name}"></em></div>
-                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
-                                            <div class="operate">
-                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
-                                            </div>
-                                        </div>
-                                    </li >
-                                </ul>
+                <div class="yui3-u-5-6 order-pay">
+                    <div class="body">
+                        <div class="table-title">
+                            <table class="sui-table  order-table">
+                                <tr>
+                                    <thead>
+                                        <th width="35%">宝贝</th>
+                                        <th width="5%">单价</th>
+                                        <th width="5%">数量</th>
+                                        <th width="8%">商品操作</th>
+                                        <th width="10%">实付款</th>
+                                        <th width="10%">交易状态</th>
+                                        <th width="10%">交易操作</th>
+                                    </thead>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="order-detail">
+                            <div class="orders">
+                                <div class="choose-order">
+                                    <div class="sui-pagination pagination-large top-pages">
+                                        <ul>
+                                            <li class="prev disabled"><a href="#">上一页</a></li>
+
+                                            <li class="next"><a href="#">下一页</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+								<div v-for="order in orders" th:each="aa:${orders}">
+                                    <!--order1-->
+                                    <div class="choose-title">
+                                        <label data-toggle="checkbox" class="checkbox-pretty ">
+                                            <input type="checkbox" checked="checked"/>
+                                            <span th:text="${#dates.format(aa.createTime, 'yyyy-MM-dd HH:mm')}">
+                                            </span>
+                                            <font>订单编号：{{order.id}}</font>
+                                            店铺：哇哈哈 <a>和我联系</a></span>
+                                        </label>
+                                        <a class="sui-btn btn-info share-btn">分享</a>
+                                    </div>
+                                    <table class="sui-table table-bordered order-datatable">
+                                        <tbody>
+
+
+                                        <tr>
+                                            <td width="35%">
+                                                <div class="typographic"><img src="orderItem.images" />
+                                                    <a href="#" class="block-text" v-for="orderItem in order.orderItems">{{orderItem.name}}</a>
+                                                    <span class="guige">规格：</span>
+                                                </div>
+                                            </td>
+                                            <td width="5%" class="center">
+                                                <ul class="unstyled" v-for="orderItem in order.orderItems">
+                                                    <li>¥{{orderItem.price}}</li>
+                                                </ul>
+                                            </td>
+											<td width="5%" class="center"><span v-for="orderItem in order.orderItems">{{orderItem.num}}</span></td>
+                                            <td width="8%" class="center">
+                                            </td>
+											<td width="10%" class="center" rowspan="2">
+												<ul class="unstyled" >
+													<li>¥{{order.totalMoney}}</li>
+													<li>（含运费：￥0.00）</li>
+												</ul>
+											</td>
+											<td width="10%" class="center" rowspan="2">
+												<ul class="unstyled">
+													<li>等待卖家付款</li>
+													<li><a href="orderDetail.html" class="btn">订单详情 </a></li>
+												</ul>
+											</td>
+											<td width="10%" class="center" rowspan="2">
+												<ul class="unstyled">
+													<li><a href="#" class="sui-btn btn-info">立即付款</a></li>
+													<li>取消订单</li>
+
+												</ul>
+											</td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
-					</div>
 
-					<div class="fr page">
-						<div class="sui-pagination pagination-large">
-							<ul>
-								<li class="prev">
-									<a th:href="@{${url}(pageNum=${page.prePage})}">«上一页</a>
-								</li>
-								<li th:each="i:${#numbers.sequence(page.navigateFirstPage,page.navigateLastPage)}"
-									th:class="${i}==${page.pageNum}?'active':''">
-									<a th:href="@{${url}(pageNum=${i})}" th:text="${i}"></a>
-								</li>
-								<li class="dotted"><span>...</span></li>
-								<li class="next">
-									<a th:href="@{${url}(pageNum=${page.nextPage})}">下一页»</a>
-								</li>
-							</ul>
-							<div><span>共<span th:text="${page.pages}"></span>页&nbsp;</span><span>
-      到第
-      <input type="text" class="page-num" id="ChoosePageNum">
-      页 <button class="page-confirm" th:onclick="'javascript:choosePage('+${page.pages}+');'">确定</button></span></div>
-						</div>
-					</div>
+                            <div class="clearfix"></div>
+                        </div>
 
-
-
-                        <!--猜你喜欢-->
                         <div class="like-title">
                             <div class="mt">
-                                <span class="fl"><strong>猜你喜欢</strong></span>
+                                <span class="fl"><strong>热卖单品</strong></span>
                             </div>
                         </div>
                         <div class="like-list">
@@ -445,7 +474,7 @@ $(function(){
 					</div>
 					<div class="yui3-u-1-6">
 						<h4>帮助中心</h4>
-						<img src="img/wx_cz.jpg">
+						<img src="/img/wx_cz.jpg">
 					</div>
 				</div>
 			</div>
@@ -468,31 +497,18 @@ $(function(){
 		</div>
 	</div>
 </div>
-<!--<script>
-    new Vue({
-        el: '#app',
-        methods:{
-            handleSizeChange(pageSize){
-                console.log(pageSize);
-            },
-            handleCurrentChange(currentPage){
-                console.log(currentPage);
-            }
-        },
-        data: function() {
-
-            return {
-                currentPage:${},
-                pageSize:5,
-                total:20
-            };
-        }
-    })
-
-</script>-->
-<script>
-
-</script>
 <!--页面底部END-->
-undefined
+<script src="/js/axios.js"></script>
+<script src="/js/vue.js"></script>
+<script th:inline="javascript">
+    var vue=new Vue({
+            el:'#account',
+            data: {
+                orders:[[${orders}]]
+            },
+            methods:{
+
+            }
+        });
+</script>
 </html>

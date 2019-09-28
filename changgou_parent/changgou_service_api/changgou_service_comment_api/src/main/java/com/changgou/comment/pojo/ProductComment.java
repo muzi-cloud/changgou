@@ -21,7 +21,7 @@ public class ProductComment implements Serializable{
 	private Long skuId;//商品ID
 
     @Column(name = "order_id")
-	private Long orderId;//订单ID
+	private String orderId;//订单ID
 
     @Column(name = "username")
 	private String username;//登陆用户名
@@ -53,12 +53,12 @@ public class ProductComment implements Serializable{
 		this.skuId = skuId;
 	}
 	//get方法
-	public Long getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 
 	//set方法
-	public void setOrderId(Long orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	//get方法

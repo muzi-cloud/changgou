@@ -3,6 +3,7 @@ package com.changgou.order.pojo;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /****
@@ -61,8 +62,16 @@ public class OrderItem implements Serializable{
 
     @Column(name = "is_return")
 	private String isReturn;//是否退货,0:未退货，1：已退货
+	@Transient
+	private String spec;//规格Id
 
+	public String getSpec() {
+		return spec;
+	}
 
+	public void setSpec(String spec) {
+		this.spec = spec;
+	}
 
 	//get方法
 	public String getId() {

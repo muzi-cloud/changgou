@@ -3,8 +3,10 @@ package com.changgou.order.pojo;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /****
  * @Author:sz.itheima
@@ -95,8 +97,16 @@ public class Order implements Serializable{
 
     @Column(name = "is_delete")
 	private String isDelete;//是否删除
+	@Transient
+	private List<OrderItem> orderItems;//封装订单详情
 
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
 
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
 
 	//get方法
 	public String getId() {
