@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+</head>
+<body>
+<div class="app" id="app">
+    <form>
+        <input v-model="user.newpassword" type="text" class="input-clear" placeholder="请输入新密码">
+        <input v-model="user.repeatpassword" type="text" class="input-clear" placeholder="重复密码"></br>
+        <button @click="submit()" type="button" class="btn order-btn">提交</button>
+        <div style="text-align: center;color: red;">{{message}}</div>
+
+    </form>
+</div>
+<script type="text/javascript"></script>
+<script src="/js/axios.js"></script>
+<script src="/js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:"",
+            user:{
+                newpassword:"",
+                repeatpassword:""
+            }//预约信息
+        },
+        methods:{
+            submit:function(){
+                 var pwd=this.user.newpassword;
+                axios.post("/api/security/resetPassword?pwd="+pwd).then(function (response){
+                    if(response.data.flag){
+
+
+                        app.message=response.data.message;
+
+                        //跳转
+                    axios.get("/api/userweb1/success");
+                    window.location.href="/api/userweb1/success";
+                }else{
+                    this.$message.error(response.data.message);
+                }
+            });
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -77,4 +77,8 @@ public interface UserService {
      */
     int addUserPoints(String username,Integer pint);
 
+
+    void updatePassword(String pwd, String phone);
+
+    void changePassword(String username, String pwd);
 }
